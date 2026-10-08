@@ -1,0 +1,10 @@
+# Copy this file to .env and fill in your key.
+# Get an OpenAI API key at: https://platform.openai.com/api-keys
+OPENAI_API_KEY=your_openai_api_key_here
+
+# Optional overrides:
+# NEWSROOM_TIMEOUT_SECONDS=900   # hard limit for one full pipeline run
+# NEWSROOM_SEARCH_MAX_RESULTS=6  # results per web search
+# NEWSROOM_PORT=7860             # Gradio port
+# NEWSROOM_HOST=127.0.0.1        # Gradio bind address
+# NEWSROOM_OPEN_BROWSER=1        # 1 = open the browser on launch

@@ -1,0 +1,9 @@
+# AI Newsroom — verified with: crewai 1.15.25, litellm 1.104.2,
+# gradio 6.29.1, ddgs 9.16.0, python-dotenv 1.2.4 (Python 3.12).
+#
+# The [litellm] extra is required on CrewAI >= 1.x: LLM provider routing
+# (openai/...) ships as an optional dependency.
+crewai[litellm]>=1.15.25,<2.0
+gradio>=6.0,<7.0
+ddgs>=9.0
+python-dotenv>=1.0
