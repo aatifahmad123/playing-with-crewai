@@ -1,29 +1,27 @@
 # AI Newsroom
 
+![AI Newsroom demo](demo-images/demo-1.jpeg)
+
 Three AI journalists. One verified story.
 
 A [CrewAI](https://docs.crewai.com/) demo that turns a topic into a fact-checked
-news article. A crew of three agents — a **Researcher**, a **Fact-Checker** and
+news article. A crew of three agents - a **Researcher**, a **Fact-Checker** and
 an **Editor** — runs in sequence, each receiving the previous agent's output as
 context, while a Gradio UI streams live progress and shows every intermediate
 artifact.
 
-```
-Topic → 🔬 Researcher → 🔍 Fact-Checker → ✍️ Editor → Article
-        (web search)     (verifies claims)  (writes prose)
-```
 
 ## What makes it a *crew*, not one big prompt
 
 - **Three distinct agents**, each with its own role, goal, backstory,
-  temperature and iteration limit — the fact-checker runs cold (0.1) because it
+  temperature and iteration limit - the fact-checker runs cold (0.1) because it
   must classify claims conservatively; the editor runs warmer (0.5) because it
   writes prose.
 - **Chained tasks** via CrewAI's `context` mechanism on a `Process.sequential`
-  pipeline: research → fact-check → editing.
+  pipeline: research > fact-check > editing.
 - **A real web search tool** (DuckDuckGo, no API key needed) available to the
   Researcher and Fact-Checker, so the article is grounded in current
-  information — and agents are explicitly instructed to mark unverifiable
+  information - and agents are explicitly instructed to mark unverifiable
   claims `NEEDS_SOURCE` rather than invent citations.
 - **Transparency UI**: watch each stage complete in real time, then read the
   research brief, the fact-check report, all cited sources and a
@@ -73,15 +71,6 @@ config.py           Settings, model IDs, temperatures, styles, lengths
 compat.py           Compat shim for a CrewAI↔LiteLLM request-schema issue
 utils/formatting.py Progress panel, source extraction, process rendering
 ```
-
-## Notes on the compat shim
-
-Recent CrewAI versions tag outgoing messages with a prompt-caching marker
-(`cache_breakpoint`) that providers with strict request schemas (the original
-trigger was Groq) reject as an unrecognized field. `compat.py` neutralizes that
-marker before any agent is constructed — it only disables a caching
-optimization that never worked through LiteLLM routing in the first place;
-model behaviour is unchanged.
 
 ## Troubleshooting
 
